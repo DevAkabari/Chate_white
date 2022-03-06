@@ -115,7 +115,7 @@ class _IndividualPageState extends State<IndividualPage> {
     }
   }
 
-  _handleMessageTap(BuildContext context, types.Message message) async {
+  void _handleMessageTap(types.Message message) async {
     if (message is types.FileMessage) {
       await OpenFile.open(message.uri);
     }
@@ -289,9 +289,10 @@ class _IndividualPageState extends State<IndividualPage> {
           body: SafeArea(
             bottom: false,
             child: Chat(
+              theme: DefaultChatTheme(backgroundColor: Colors.transparent),
               messages: _messages,
               onAttachmentPressed: _handleAtachmentPressed,
-              // onMessageTap: _handleMessageTap,
+              onMessageTap: _handleMessageTap,
               onPreviewDataFetched: _handlePreviewDataFetched,
               onSendPressed: _handleSendPressed,
               user: _user,
