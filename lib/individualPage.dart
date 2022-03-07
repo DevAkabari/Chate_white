@@ -8,6 +8,7 @@ import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:open_file/open_file.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 String randomString() {
   final random = Random.secure();
@@ -32,7 +33,7 @@ class _IndividualPageState extends State<IndividualPage> {
     });
   }
 
-  void _handleImageSelection() async {
+  Future<void> _handleImageSelection() async {
     final result = await ImagePicker().pickImage(
       imageQuality: 100,
       maxWidth: 1440,
@@ -63,29 +64,38 @@ class _IndividualPageState extends State<IndividualPage> {
       context: context,
       builder: (BuildContext context) {
         return SafeArea(
+          bottom: false,
           child: SizedBox(
-            height: 144,
+            height: 110,
+            width: MediaQuery.of(context).size.width,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context);
                     _handleImageSelection();
+                    Navigator.pop(context);
                   },
                   child: const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text('Photo'),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Photo',
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context);
                     _handleFileSelection();
+                    Navigator.pop(context);
                   },
                   child: const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text('File'),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'File',
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                 ),
               ],
@@ -152,123 +162,126 @@ class _IndividualPageState extends State<IndividualPage> {
       extendBodyBehindAppBar: true,
       // backgroundColor: Color(0xFFF7F0F3),
 
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFFFFFFF),
-        titleSpacing: 0,
-        automaticallyImplyLeading: false,
-        shadowColor: Colors.transparent,
-        leadingWidth: 100,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.arrow_back,
-                color: Colors.pink,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              CircleAvatar(
-                radius: 22,
-                backgroundImage: AssetImage(widget.chatModel.isGroup
-                    ? 'assets/image/sde.jpg'
-                    : 'assets/image/userr.jpg'),
-              ),
-            ],
-          ),
-        ),
-        title: InkWell(
-          onTap: () {},
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(65),
+        child: AppBar(
+          backgroundColor: const Color(0xFFFFFFFF),
+          titleSpacing: 0,
+          automaticallyImplyLeading: false,
+          shadowColor: Colors.transparent,
+          leadingWidth: 100,
+          leading: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  widget.chatModel.name,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20),
+                Icon(
+                  Icons.arrow_back,
+                  color: Colors.pink,
                 ),
-                Text(
-                  "last seen " + widget.chatModel.time,
-                  style: TextStyle(
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 11),
-                )
+                SizedBox(
+                  width: 10,
+                ),
+                CircleAvatar(
+                  radius: 22,
+                  backgroundImage: AssetImage(widget.chatModel.isGroup
+                      ? 'assets/image/sde.jpg'
+                      : 'assets/image/userr.jpg'),
+                ),
               ],
             ),
           ),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.video_call,
-                color: Colors.black54,
-              )),
-          InkWell(
-            child: Icon(
-              Icons.more_vert,
-              color: Colors.black54,
+          title: InkWell(
+            onTap: () {},
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.chatModel.name,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20),
+                  ),
+                  Text(
+                    "last seen " + widget.chatModel.time,
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 11),
+                  )
+                ],
+              ),
             ),
-            onTap: () {
-              showModalBottomSheet<void>(
-                barrierColor: Colors.transparent,
-                backgroundColor: Colors.transparent,
-                context: context,
-                builder: (BuildContext context) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Color(0xFFFFD5EB),
-                          // Color(0xffffffff),
-                          Color(0xFFCFC2FF),
-                        ],
-                      ),
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(30),
-                      ),
-                    ),
-                    height: 100,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Text(
-                            'Clear Chat',
-                            style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              );
-            },
           ),
-          SizedBox(
-            width: 15,
-          )
-        ],
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.video_call,
+                  color: Colors.black54,
+                )),
+            InkWell(
+              child: Icon(
+                Icons.more_vert,
+                color: Colors.black54,
+              ),
+              onTap: () {
+                showModalBottomSheet<void>(
+                  barrierColor: Colors.transparent,
+                  backgroundColor: Colors.transparent,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Color(0xFFFFD5EB),
+                            // Color(0xffffffff),
+                            Color(0xFFCFC2FF),
+                          ],
+                        ),
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(30),
+                        ),
+                      ),
+                      height: 100,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              'Clear Chat',
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+            SizedBox(
+              width: 15,
+            )
+          ],
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(30),
+            ),
           ),
         ),
       ),
@@ -286,10 +299,16 @@ class _IndividualPageState extends State<IndividualPage> {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
-          body: SafeArea(
-            bottom: false,
+          body: Container(
+            padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
+            // bottom: false,
             child: Chat(
-              theme: DefaultChatTheme(backgroundColor: Colors.transparent),
+              theme: DefaultChatTheme(
+                  inputBorderRadius: BorderRadius.circular(0),
+                  backgroundColor: Colors.transparent,
+                  inputBackgroundColor: Colors.white,
+                  attachmentButtonIcon: Icon(Icons.camera),
+                  inputTextColor: Colors.black),
               messages: _messages,
               onAttachmentPressed: _handleAtachmentPressed,
               onMessageTap: _handleMessageTap,
