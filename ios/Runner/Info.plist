@@ -2,8 +2,35 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<key>CFBundleIcons</key>
+<dict>
+    <key>CFBundleAlternateIcons</key>
+    <dict>
+        <key>Blue</key>
+        <dict>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>icon-blue</string>
+           </array>
+        </dict>
+        <key>Red</key>
+        <dict>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>icon-red</string>
+            </array>
+        </dict>
+    </dict>
+    <key>CFBundlePrimaryIcon</key>
+    <dict>
+        <key>CFBundleIconFiles</key>
+        <array/>
+</dict>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Camelion</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,6 +49,12 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Please grant camera access</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Please grant microphone access</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please grant photo gallery access</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -41,15 +74,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<!-- permissions -->
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Please grant photo gallery access</string>
-    <key>NSCameraUsageDescription</key>
-    <string>Please grant camera access</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Please grant microphone access</string>
-    <!-- end permissions -->
-    <key>UILaunchStoryboardName</key>
-    <string>LaunchScreen</string>
 </dict>
 </plist>

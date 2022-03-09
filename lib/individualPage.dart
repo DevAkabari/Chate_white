@@ -179,7 +179,7 @@ class _IndividualPageState extends State<IndividualPage> {
               children: [
                 Icon(
                   Icons.arrow_back,
-                  color: Colors.pink,
+                  color: Colors.black54,
                 ),
                 SizedBox(
                   width: 10,
@@ -300,7 +300,7 @@ class _IndividualPageState extends State<IndividualPage> {
           resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           body: Container(
-            padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
+            padding: EdgeInsets.fromLTRB(0, 86, 0, 0),
             // bottom: false,
             child: Chat(
               theme: DefaultChatTheme(
