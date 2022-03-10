@@ -224,7 +224,7 @@ class _IndividualPageState extends State<IndividualPage> {
             IconButton(
                 onPressed: () {},
                 icon: Icon(
-                  Icons.video_call,
+                  Icons.video_call_rounded,
                   color: Colors.black54,
                 )),
             InkWell(
@@ -307,7 +307,8 @@ class _IndividualPageState extends State<IndividualPage> {
                   inputBorderRadius: BorderRadius.circular(0),
                   backgroundColor: Colors.transparent,
                   inputBackgroundColor: Colors.white,
-                  attachmentButtonIcon: Icon(Icons.camera),
+                  attachmentButtonIcon:
+                      SvgPicture.asset('assets/icon/Folder 1.svg'),
                   inputTextColor: Colors.black),
               messages: _messages,
               onAttachmentPressed: _handleAtachmentPressed,

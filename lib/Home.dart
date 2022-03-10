@@ -1,6 +1,8 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter23222/customCard.dart';
+import 'package:flutter23222/HomeMain.dart';
+import 'package:flutter23222/changeIcon.dart';
+
 import 'package:flutter23222/model/chateModel.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -14,101 +16,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<ChatModel> chats = [
-    ChatModel(
-        name: 'Dev',
-        icon: 'assets/image/jimmy-fermin-bqe0J0b26RQ-unsplash.jpg',
-        isGroup: false,
-        time: '01:30',
-        currentMessage: 'currentMessage'),
-    ChatModel(
-        name: 'Dev1',
-        icon: 'assets/image/henri-meilhac-jJ0tLs2ROd4-unsplash.jpg',
-        isGroup: true,
-        time: '12:32',
-        currentMessage: 'hello ')
+  List<Widget> a = [
+    HomeMain(),
+    ChangeIcon(),
+    Container(color: Colors.amber),
   ];
   int currentIndex = 0;
 
-  List listOfColors = [
-    Container(
-      color: Colors.blueAccent,
-    ),
-    Container(
-      color: Colors.redAccent,
-    ),
-    Container(
-      color: Colors.orangeAccent,
-    ),
-    Container(
-      color: Colors.cyanAccent,
-    )
-  ];
   @override
   Widget build(BuildContext context) {
     int _currentIndex = 0;
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      backgroundColor: Color(0xFFF7F0F3),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFFFFFFF),
-        titleSpacing: 20,
-        title: ShaderMask(
-          shaderCallback: (bounds) {
-            return const LinearGradient(
-              colors: [
-                Color(0xFF875DFC),
-                Color(0xFFFA70FF),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ).createShader(Offset.zero & bounds.size);
-          },
-          child: const Text(
-            "Camelion",
-            style: TextStyle(
-              fontSize: 27.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        automaticallyImplyLeading: false,
-        shadowColor: Colors.transparent,
-        actions: <Widget>[
-          IconButton(
-            icon: SvgPicture.asset('assets/icon/search.svg'),
-            tooltip: 'Show Snackbar',
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('This is a snackbar')));
-            },
-          ),
-          InkWell(
-            onTap: () {
-              print('Click Profile Pic');
-            },
-            child: const Padding(
-              padding: EdgeInsets.only(right: 15),
-              child: CircleAvatar(
-                radius: 22, // Image radius
-                backgroundImage: AssetImage('assets/image/dp.jpg'),
-              ),
-            ),
-          )
-        ],
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
-          ),
-        ),
-      ),
-      body: ListView.builder(
-        itemCount: (chats.length),
-        itemBuilder: (context, index) => CustomCard(
-          chatModel: chats[index],
-        ),
-      ),
+      body: a.elementAt(currentIndex),
+      //
       bottomNavigationBar: BottomNavyBar(
         showElevation: false,
         selectedIndex: currentIndex,

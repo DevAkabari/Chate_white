@@ -46,6 +46,7 @@ dependencies:
   bubble: ^1.2.1
   bottom_navy_bar: ^6.0.0
   flutter_speed_dial: ^5.0.0+1
+  flutter_dynamic_icon: ^2.1.0
 
 
 dev_dependencies:
